@@ -1,15 +1,15 @@
 #!/bin/bash
 cat /etc/debian_version
 lsb_release -a
-# echo "Prepare docker"
-# curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
-# sudo usermod -aG docker keke
+echo "Prepare docker"
+curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun
+sudo usermod -aG docker keke
 
-# sudo tee /etc/docker/daemon.json <<-'EOF'
-# {
-#     "registry-mirrors": ["https://50t8xpr9.mirror.aliyuncs.com"]
-# }
-# EOF
+sudo tee /etc/docker/daemon.json <<-'EOF'
+{
+    "registry-mirrors": ["https://50t8xpr9.mirror.aliyuncs.com"]
+}
+EOF
 
 echo "Set mirrors"
 sudo cp -a /etc/apt/sources.list /etc/apt/sources.list.bak
