@@ -16,6 +16,13 @@ sudo cp -a /etc/apt/sources.list /etc/apt/sources.list.bak
 sudo sed -i "s@http://packages.deepin.com/deepin@https://mirrors.huaweicloud.com/deepin@g" /etc/apt/sources.list
 sudo apt-get update
 
+echo "Set proxy"
+export http_proxy=http://127.0.0.1:7890
+export https_proxy=http://127.0.0.1:7891
+sudo snap set system proxy.https=socks5://127.0.0.1:7890
+sudo snap set system proxy.http=socks5://127.0.0.1:7891
+
+
 echo "Install fish"
 # Keep in mind that the owner of the key may distribute updates, packages and repositories that your system will trust (more information).
 echo 'deb http://download.opensuse.org/repositories/shells:/fish:/release:/3/Debian_10/ /' | sudo tee /etc/apt/sources.list.d/shells:fish:release:3.list
