@@ -19,6 +19,7 @@ sudo apt-get update
 echo "Set proxy"
 export http_proxy=http://127.0.0.1:7890
 export https_proxy=http://127.0.0.1:7891
+# sudo -E balabala
 sudo snap set system proxy.https=socks5://127.0.0.1:7890
 sudo snap set system proxy.http=socks5://127.0.0.1:7891
 
@@ -40,6 +41,10 @@ echo "Install dotnet sdk"
 sudo snap install dotnet-sdk --channel=5.0/beta --classic
 sudo snap alias dotnet-sdk.dotnet dotnet
 sudo ln -sv /snap/dotnet-sdk/current/dotnet /usr/local/bin/dotnet
+sudo touch /etc/profile.d/env.sh
+sudo tee /etc/profile.d/env.sh <<-'EOF'
+export PATH="$PATH:/home/keke/.dotnet/tools"
+EOF
 
 echo "Install GIT"
 sudo apt install git-all
