@@ -43,7 +43,10 @@ sudo snap alias dotnet-sdk.dotnet dotnet
 sudo ln -sv /snap/dotnet-sdk/current/dotnet /usr/local/bin/dotnet
 sudo touch /etc/profile.d/env.sh
 sudo tee /etc/profile.d/env.sh <<-'EOF'
-export PATH="$PATH:/home/keke/.dotnet/tools"
+export PATH="$PATH:$HOME/.dotnet/tools"
+export DOTNET_ROOT=/snap/dotnet-sdk/current
+export MSBuildSDKsPath=$DOTNET_ROOT/sdk/$(${DOTNET_ROOT}/dotnet --version)/Sdks
+export PATH="${PATH}:${DOTNET_ROOT}"
 EOF
 
 echo "Install GIT"
