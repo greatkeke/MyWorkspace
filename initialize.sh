@@ -51,3 +51,11 @@ EOF
 
 echo "Install GIT"
 sudo apt install git-all
+
+echo "Install Node"
+sudo snap install node --channel=14/stable --classic
+
+echo "Set en for SU"
+sudo visudo
+
+sudo npm config set scripts-prepend-node-path auto
