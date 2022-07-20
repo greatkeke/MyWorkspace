@@ -49,8 +49,6 @@ export MSBuildSDKsPath=$DOTNET_ROOT/sdk/$(${DOTNET_ROOT}/dotnet --version)/Sdks
 export PATH="${PATH}:${DOTNET_ROOT}"
 EOF
 
-sudo snap install code --classic
-
 echo "Install GIT"
 sudo apt install git-all
 
