@@ -38,7 +38,7 @@ sudo snap install hello-world
 hello-world
 
 echo "Install dotnet sdk"
-sudo snap install dotnet-sdk
+sudo snap install dotnet-sdk --classic
 sudo snap alias dotnet-sdk.dotnet dotnet
 sudo ln -sv /snap/dotnet-sdk/current/dotnet /usr/local/bin/dotnet
 sudo touch /etc/profile.d/env.sh
