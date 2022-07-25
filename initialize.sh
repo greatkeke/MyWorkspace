@@ -32,30 +32,49 @@ sudo apt update
 sudo apt install fish
 chsh -s `which fish`
 
-echo "Install snap"
-sudo apt install snapd
-sudo snap install hello-world
-hello-world
+# echo "Install snap"
+# sudo apt install snapd
+# sudo snap install hello-world
+# hello-world
 
 echo "Install dotnet sdk"
-sudo snap install dotnet-sdk --classic
-sudo snap alias dotnet-sdk.dotnet dotnet
-sudo ln -sv /snap/dotnet-sdk/current/dotnet /usr/local/bin/dotnet
-sudo touch /etc/profile.d/env.sh
-sudo tee /etc/profile.d/env.sh <<-'EOF'
-export PATH="$PATH:$HOME/.dotnet/tools"
-export DOTNET_ROOT=/snap/dotnet-sdk/current
-export MSBuildSDKsPath=$DOTNET_ROOT/sdk/$(${DOTNET_ROOT}/dotnet --version)/Sdks
-export PATH="${PATH}:${DOTNET_ROOT}"
-EOF
+# sudo snap install dotnet-sdk --classic
+# sudo snap alias dotnet-sdk.dotnet dotnet
+# sudo ln -sv /snap/dotnet-sdk/current/dotnet /usr/local/bin/dotnet
+# sudo touch /etc/profile.d/env.sh
+# sudo tee /etc/profile.d/env.sh <<-'EOF'
+# export PATH="$PATH:$HOME/.dotnet/tools"
+# export DOTNET_ROOT=/snap/dotnet-sdk/current
+# export MSBuildSDKsPath=$DOTNET_ROOT/sdk/$(${DOTNET_ROOT}/dotnet --version)/Sdks
+# export PATH="${PATH}:${DOTNET_ROOT}"
+# EOF
+
+wget https://packages.microsoft.com/config/ubuntu/22.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb
+sudo dpkg -i packages-microsoft-prod.deb
+rm packages-microsoft-prod.deb
+
+sudo apt-get update; \
+  sudo apt-get install -y apt-transport-https && \
+  sudo apt-get update && \
+  sudo apt-get install -y dotnet-sdk-6.0
 
 echo "Install GIT"
 sudo apt install git-all
 
-echo "Install Node"
-sudo snap install node --channel=14/stable --classic
+# echo "Install Node"
+# sudo snap install node --channel=14/stable --classic
 
-echo "Set en for SU"
-sudo visudo
+# echo "Set en for SU"
+# sudo visudo
 
-sudo npm config set scripts-prepend-node-path auto
+# sudo npm config set scripts-prepend-node-path auto
+
+sudo apt install remmina
+
+# share folder
+sudo apt install cifs-utils
+# openwrt share
+echo //192.168.1.10/share /mnt/share cifs vers=3.0,credentials=/home/KEKE/Documents/smbCredentialsShare >> /etc/fstab
+
+# htpc d
+echo //192.168.1.100/D /mnt/d cifs vers=3.0,credentials=/home/KEKE/Documents/smbLocalD,file_mode=0777,dir_mode=0777,uid=$USER,gid=$USER >> /etc/fstab
